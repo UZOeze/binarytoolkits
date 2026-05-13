@@ -573,6 +573,48 @@
     color:#aaa;
   }
   
+  .referral-section {
+    background:rgba(40, 35, 20, 0.6);
+    border-radius:10px;
+    padding:20px;
+    margin-top:20px;
+    border:1px solid rgba(212, 175, 55, 0.2);
+  }
+  
+  .referral-link {
+    display:block;
+    width:100%;
+    padding:12px 15px;
+    margin:10px 0;
+    background:rgba(30, 30, 30, 0.8);
+    border:1px solid #444;
+    border-radius:8px;
+    color:#f0e6d2;
+    font-size:15px;
+    word-break:break-all;
+    text-align:center;
+  }
+  
+  .copy-btn {
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:linear-gradient(to bottom, #d4af37, #b8860b);
+    color:#1a1a1a;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  
+  .copy-btn:hover {
+    background:linear-gradient(to bottom, #c5a02e, #a8760b);
+    transform:scale(1.02);
+  }
+  
   .human-animation {
     position:fixed;
     top:30px;
@@ -829,7 +871,7 @@
 <div class="wrap">
   <div class="header">
     <div class="logo-container pulse">
-      <img src="https://image.qwenlm.ai/public_source/4e53894e-a4aa-457d-b303-6267713fb8e9/182cb5042-4a0a-47d9-97b1-305ca57f4936.png" alt="Crypto-Rocket Logo" class="logo">
+      <img src="https://image.qwenlm.ai/public_source/f91bb4ec-19e8-489e-9361-0d2a90a1e656/1338aaecd-3b3c-4d87-8a79-d4986e5da5c2.png" alt="Crypto-Rocket Logo" class="logo">
     </div>
     <h1>🚀 BinaryOptions Traders Toolkit</h1>
     <div class="brand-name">⟹CRYPTOROCKET⟸▶️YouTube🔴</div>
@@ -842,6 +884,7 @@
     <button class="tab active" onclick="switchTab('martingale')">📈 Martingale</button>
     <button class="tab" onclick="switchTab('payout')">💰 Payout</button>
     <button class="tab" onclick="switchTab('videos')">📺 Videos</button>
+    <button class="tab" onclick="switchTab('websites')">🔗 Websites</button>
     <button class="tab" onclick="switchTab('buy')">🛒 Buy Product</button>
   </div>
 
@@ -927,6 +970,7 @@
     </div>
     <div class="row">
       <div><label>Broker payout (%)</label><div class="range-row"><input type="range" id="m-payout" min="1" max="1000" step="1" value="80" oninput="calculateMartingale()"><span class="range-val" id="m-payout-out">80%</span></div></div>
+      <div><label>Max steps</label><input type="number" id="m-maxsteps" value="10" min="1" max="20" oninput="calculateMartingale()"></div>
     </div>
     <hr class="divider">
     <div style="overflow-x:auto;">
@@ -980,6 +1024,36 @@
     <h2 style="margin-bottom:20px; color:#d4af37;">Binary Options Education Videos</h2>
     <div class="video-list" id="video-list">
       <div class="no-videos">Loading videos...</div>
+    </div>
+  </div>
+
+  <!-- Binary Options Websites -->
+  <div id="panel-websites" class="panel">
+    <h2 style="margin-bottom:20px; color:#d4af37;">Binary Options Referral Links</h2>
+    <p style="margin-bottom: 20px;">Use these referral links to sign up for popular binary options platforms. Earn rewards when your referred traders start trading!</p>
+    
+    <div class="referral-section">
+      <h3 style="color:#d4af37; margin-bottom: 15px;">Pocket Option</h3>
+      <input type="text" class="referral-link" id="pocket-option-ref" value="https://pocketoption.com/?ref=CRYPTOROCKET" readonly>
+      <button class="copy-btn" onclick="copyToClipboard('pocket-option-ref')">Copy Link</button>
+    </div>
+    
+    <div class="referral-section">
+      <h3 style="color:#d4af37; margin-bottom: 15px;">Quotex</h3>
+      <input type="text" class="referral-link" id="quotex-ref" value="https://quotex.com/?ref=CRYPTOROCKET" readonly>
+      <button class="copy-btn" onclick="copyToClipboard('quotex-ref')">Copy Link</button>
+    </div>
+    
+    <div class="referral-section">
+      <h3 style="color:#d4af37; margin-bottom: 15px;">Binomo</h3>
+      <input type="text" class="referral-link" id="binomo-ref" value="https://binomo.com/?ref=CRYPTOROCKET" readonly>
+      <button class="copy-btn" onclick="copyToClipboard('binomo-ref')">Copy Link</button>
+    </div>
+    
+    <div class="referral-section">
+      <h3 style="color:#d4af37; margin-bottom: 15px;">ExpertOption</h3>
+      <input type="text" class="referral-link" id="expertoption-ref" value="https://expertoption.com/?ref=CRYPTOROCKET" readonly>
+      <button class="copy-btn" onclick="copyToClipboard('expertoption-ref')">Copy Link</button>
     </div>
   </div>
 
@@ -1115,7 +1189,7 @@ const videoList = [
 ];
 
 function switchTab(id){
-  ['market','risk','winrate','martingale','payout','videos','buy'].forEach((n,i)=>{
+  ['market','risk','winrate','martingale','payout','videos','websites','buy'].forEach((n,i)=>{
     document.querySelectorAll('.tab')[i].classList.toggle('active',n===id);
     document.getElementById('panel-'+n).classList.toggle('active',n===id);
   });
@@ -1208,6 +1282,7 @@ function calculateMartingale(){
   const balance = parseFloat(document.getElementById("m-balance").value) || 0;
   const baseTrade = parseFloat(document.getElementById("m-initial").value) || 10;
   const payout = parseFloat(document.getElementById("m-payout").value) / 100 || 0.8;
+  const maxSteps = parseInt(document.getElementById("m-maxsteps").value) || 10;
   
   document.getElementById('m-payout-out').textContent = (payout * 100).toFixed(0) + '%';
 
@@ -1217,7 +1292,7 @@ function calculateMartingale(){
   let step = 1;
   let exceeded = false;
 
-  while (!exceeded && step <= 10) { // Limit steps to prevent infinite loops
+  while (!exceeded && step <= maxSteps) { // Use maxSteps instead of hardcoded limit
     cumulative += trade;
 
     // Calculate next trade amount needed to recover losses plus initial stake
@@ -1274,6 +1349,20 @@ function calcPayout(){
   const re=document.getElementById('p-roi');
   re.textContent=roi.toFixed(1)+'%';
   re.className='card-val '+(roi>0?'good':roi<0?'bad':'warn');
+}
+
+function copyToClipboard(inputId) {
+  const linkInput = document.getElementById(inputId);
+  linkInput.select();
+  linkInput.setSelectionRange(0, 99999); // For mobile devices
+  document.execCommand('copy');
+  
+  // Show feedback
+  const originalText = linkInput.nextElementSibling.textContent;
+  linkInput.nextElementSibling.textContent = 'Copied!';
+  setTimeout(() => {
+    linkInput.nextElementSibling.textContent = originalText;
+  }, 2000);
 }
 
 function showModal(type) {
