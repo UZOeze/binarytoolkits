@@ -1,13 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crypto-Rocket Binary Options Toolkit</title>
+<link rel="stylesheet" href="https://fonts.font.im/css2?family=Roboto:wght@300;400;500;700&display=swap">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1200 50%, #2d1b00 100%);
     color:#f0e6d2;
     padding:20px;
@@ -518,6 +520,20 @@
     font-weight:700;
     color:#d4af37;
     margin-bottom:20px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  
+  .original-price {
+    text-decoration:line-through;
+    color:#aaa;
+    font-size:20px;
+  }
+  
+  .promo-price {
+    color:#4caf50;
+    text-shadow:0 0 8px rgba(76, 175, 80, 0.4);
   }
   
   .buy-button {
@@ -871,7 +887,7 @@
 <div class="wrap">
   <div class="header">
     <div class="logo-container pulse">
-      <img src="https://image.qwenlm.ai/public_source/f91bb4ec-19e8-489e-9361-0d2a90a1e656/1338aaecd-3b3c-4d87-8a79-d4986e5da5c2.png" alt="Crypto-Rocket Logo" class="logo">
+      <img src="https://image.qwenlm.ai/public_source/d88b207b-39d1-4768-b21d-a2ec440eb75f/19706edef-f367-4e2d-8610-4cd6336075dd.png" alt="Crypto-Rocket Logo" class="logo">
     </div>
     <h1>🚀 BinaryOptions Traders Toolkit</h1>
     <div class="brand-name">⟹CRYPTOROCKET⟸▶️YouTube🔴</div>
@@ -1064,7 +1080,10 @@
       <div class="product-info">
         <h2 class="product-title">CryptoRocket Premium Toolkit</h2>
         <p class="product-description">Advanced binary options tools, real-time market analysis, and exclusive educational content for Pocket Option traders.</p>
-        <div class="price">xx$500xx==$100</div>
+        <div class="price">
+          <span class="original-price">$500</span>
+          <span class="promo-price">$100</span>
+        </div>
         <button class="buy-button" onclick="window.open('https://selar.com/42a4ip828h', '_blank')">BUY NOW</button>
       </div>
       
@@ -1388,7 +1407,7 @@ function showModal(type) {
     content.innerHTML = `
       <p>Have questions or need support? Reach out to us through the following channels:</p>
       <br>
-      <p>Telegram group: https://t.me/Cryptorocket0000</p>
+      <p>Telegram group: <a href="https://t.me/Cryptorocket0000" target="_blank" style="color:#d4af37;">https://t.me/Cryptorocket0000</a></p>
       <br>
       <p>YouTube Channel: <a href="https://www.youtube.com/@cryptorocket__" target="_blank" style="color:#d4af37;">https://www.youtube.com/@cryptorocket__</a></p>
       <br>
@@ -1443,3 +1462,4 @@ window.onload = function() {
 </script>
 </body>
 </html>
+```
